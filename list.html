@@ -32,14 +32,17 @@
         </div>
 
     <table class="table table-bordered">
-       <tr height="19" style='height:14.25pt;'>
-        <td class="xl63" height="19" width="84" style='height:14.25pt;width:63.00pt;' x:str>货号</td>
-        <td class="xl63" width="115" style='width:86.25pt;' x:str>条码</td>
-        <td class="xl63" width="359" style='width:269.25pt;' x:str>商品名称</td>
-        <td class="xl63" width="80" style='width:60.00pt;' x:str>规格</td>
-        <td class="xl63" width="38" style='width:28.50pt;' x:str>单位</td>
-        <td class="xl63" width="48" style='width:36.00pt;' x:str>零售价</td>
-       </tr>
+        <thead>
+            <tr height="19" style='height:14.25pt;'>
+                <td class="xl63" height="19" width="84" style='height:14.25pt;width:63.00pt;' x:str>货号</td>
+                <td class="xl63" width="115" style='width:86.25pt;' x:str>条码</td>
+                <td class="xl63" width="359" style='width:269.25pt;' x:str>商品名称</td>
+                <td class="xl63" width="80" style='width:60.00pt;' x:str>规格</td>
+                <td class="xl63" width="38" style='width:28.50pt;' x:str>单位</td>
+                <td class="xl63" width="48" style='width:36.00pt;' x:str>零售价</td>
+            </tr>
+        </thead>
+       <tbody>
        <tr height="19" style='height:14.25pt;'>
         <td class="xl64" height="19" style='height:14.25pt;' x:str>A0010004</td>
         <td class="xl64" x:str>027131267256</td>
@@ -11384,6 +11387,7 @@
         <td class="xl64" x:str>支</td>
         <td class="xl64" align="right" x:num>330</td>
        </tr>
+       <tbody>
       </table>
 
 
@@ -11417,11 +11421,11 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script>
         $(function(){
-            $("tr").hide();    
+            $("tbody tr").hide();    
             var keyword = decodeURIComponent(location.href.split("#")[1]);
 
 
-            $("tr:contains("+ keyword +")").show();
+            $("tbody tr:contains("+ keyword +")").show();
         });
     </script>
   </body>
