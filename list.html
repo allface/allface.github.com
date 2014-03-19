@@ -17,6 +17,9 @@
             max-width: 760px;    
             margin:0 auto;
         }
+        tbody tr{
+            display:none;    
+        }
     </style>
   </head>
   <body>
@@ -11421,7 +11424,6 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script>
         $(function(){
-            $("tbody tr").hide();    
             var keyword = decodeURIComponent(location.href.split("#")[1]);
             $("tbody tr:contains("+ keyword +")").show();
             $("tbody tr:contains('B0')").hide();
