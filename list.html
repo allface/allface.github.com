@@ -11483,7 +11483,7 @@
             element.data('initPosition', element.position());
 
             $(window).scroll(function(){
-                if( $(document).scrollTop() > element.data('initPosition').top ){
+                if( $(document).scrollTop() > $('#listtable').position().top){
                     if(element.data('fixed')) return;
                     element.data({'fixed': true, 'need': true}).css(floatStyle);
                     element.show();
