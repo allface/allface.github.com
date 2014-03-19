@@ -11464,7 +11464,7 @@
                 var originPrice = priceTD.text() * 1;
                 var nowPrice = (originPrice * discount / 10).toFixed(2).replace(/.00$/g,'').replace(/(\.\d)0$/g, "$1");
 
-                priceTD.text(originPrice + ' / ' + nowPrice);
+                priceTD.html(originPrice + ' / ' + '<span class="badge badge-success">' + nowPrice + '</span>');
 
             });
 
