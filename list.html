@@ -17,8 +17,23 @@
             max-width: 760px;    
             margin:0 auto;
         }
+        #bar  {
+            display:none;    
+        }
+        #bar table {
+            max-width: 760px;    
+            margin:0 auto;
+        }
+        thead tr{
+            max-width: 760px;    
+            margin:0 auto;
+            background:#d9edf7;    
+        }
         tbody tr{
             display:none;    
+        }
+        .bggray{
+            background:#F9F9F9;    
         }
     </style>
   </head>
@@ -30,11 +45,28 @@
             <h1><a href="http://http://allface.github.io">Allface 代购</a></h1>
         </div>
 
-        <div class="alert alert-info">
-            各位，本人代购小店开始啦~ 货源均为国内专柜正品，支持验货！具体品牌及相应折扣如下:
-        </div>
-
-    <table class="table table-bordered">
+    <div id ="bar">
+    <table class="table table-bordered" id="bartable">
+        <thead>
+            <tr>
+                <td>货号</td>
+                <td>商品名称</td>
+                <td>规格</td>
+                <td>单位</td>
+                <td>专柜价</td>
+            </tr>
+        </thead>
+    </table>
+    </div>
+ 
+    <table class="table table-bordered" id="listtable">
+        <colgroup>
+            <col width="15%" />
+            <col width="50%" />
+            <col width="10%" />
+            <col width="10%" />
+            <col width="15%" />
+        </colgroup>
         <thead>
             <tr>
                 <td>货号</td>
@@ -11418,6 +11450,57 @@
             $("tbody tr:contains("+ keyword +")").show();
             $("tbody tr:contains('B0')").hide();
             $("tbody tr:contains('C0')").hide();
+
+            $("tbody tr:visible").each(function(index, item){
+                if (index%2) {
+                    $(this).addClass('bggray');    
+                }
+
+            });
+
+
+
+
+            var element = $("#bar"),
+            initStyle = (function(){
+                var styles = ['position', 'left', 'right', 'top', 'zIndex'],
+                ret = {};
+
+                $.each(styles, function(index, item){
+                    ret[item] = element.css(item);	
+                });
+
+                return ret;
+            })(),
+            floatStyle = {
+                position: "fixed",
+                left:20,
+                top:0,
+                right:20,
+                zIndex:9999
+            };
+
+            element.data('initPosition', element.position());
+
+            $(window).scroll(function(){
+                if( $(document).scrollTop() > element.data('initPosition').top ){
+                    if(element.data('fixed')) return;
+                    element.data({'fixed': true, 'need': true}).css(floatStyle);
+                    element.show();
+                } else{
+                    if(!element.data('need')) return;
+                    element.data({'fixed': false, 'need': false}).css(initStyle);	
+                    element.hide();
+                }
+            }).scroll();
+
+            $(window).resize(function(){
+                $('#bartable').width($('#listtable').width());    
+                $('#bartable thead td').each(function(index){
+                    $(this).width($($('#listtable thead td')[index]).width());    
+                });
+            }).resize();
+
 
             /*
             $("tbody tr:contains('B0')").each(function(){
