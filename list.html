@@ -53,12 +53,13 @@
                 <td>商品名称</td>
                 <td>规格</td>
                 <td>单位</td>
-                <td>专柜价</td>
+                <td>专柜/零售(元)</td>
             </tr>
         </thead>
     </table>
     </div>
  
+    <span class="label label-important" id="discount"></span>
     <table class="table table-bordered" id="listtable">
         <colgroup>
             <col width="15%" />
@@ -73,7 +74,7 @@
                 <td>商品名称</td>
                 <td>规格</td>
                 <td>单位</td>
-                <td>专柜价</td>
+                <td>专柜/零售(元)</td>
             </tr>
         </thead>
        <tbody>
@@ -11451,14 +11452,21 @@
             $("tbody tr:contains('B0')").hide();
             $("tbody tr:contains('C0')").hide();
 
+            var discount = location.href.split("#")[2] * 1;
+            $('#discount').text(discount + " 折");
+
             $("tbody tr:visible").each(function(index, item){
                 if (index%2) {
                     $(this).addClass('bggray');    
                 }
 
+                var priceTD = $('td:last', this);
+                var originPrice = priceTD.text() * 1;
+                var nowPrice = (originPrice * discount / 10).toFixed(2).replace(/.00$/g,'').replace(/(\.\d)0$/g, "$1");
+
+                priceTD.text(originPrice + ' / ' + nowPrice);
+
             });
-
-
 
 
             var element = $("#bar"),
