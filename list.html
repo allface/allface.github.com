@@ -53,7 +53,7 @@
                 <td>商品名称</td>
                 <td>规格</td>
                 <td>单位</td>
-                <td>专柜/零售(元)</td>
+                <td>专柜价<br/>折扣价</td>
             </tr>
         </thead>
     </table>
@@ -74,7 +74,7 @@
                 <td>商品名称</td>
                 <td>规格</td>
                 <td>单位</td>
-                <td>专柜/零售(元)</td>
+                <td>专柜价<br/>折扣价</td>
             </tr>
         </thead>
        <tbody>
@@ -11464,7 +11464,7 @@
                 var originPrice = priceTD.text() * 1;
                 var nowPrice = (originPrice * discount / 10).toFixed(2).replace(/.00$/g,'').replace(/(\.\d)0$/g, "$1");
 
-                priceTD.html(originPrice + ' / ' + '<span class="badge badge-success">' + nowPrice + '</span>');
+                priceTD.html(originPrice + '<br/><span class="badge badge-success">' + nowPrice + '</span>');
 
             });
 
@@ -11508,6 +11508,8 @@
                     $(this).width($($('#listtable thead td')[index]).width());    
                 });
             }).resize();
+
+            $('tr').each(function(){$("td:first", this).hide()});
 
 
             /*
