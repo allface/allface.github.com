@@ -11463,6 +11463,7 @@
                 var priceTD = $('td:last', this);
                 var originPrice = priceTD.text() * 1;
                 var nowPrice = (originPrice * discount / 10).toFixed(2).replace(/.00$/g,'').replace(/(\.\d)0$/g, "$1");
+                nowPrice = Math.round(nowPrice);
 
                 priceTD.html(originPrice + '<br/><span class="badge badge-success">' + nowPrice + '</span>');
 
